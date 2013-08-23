@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ToggleButton;
@@ -20,18 +21,22 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (!(getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH))) {
-            AlertDialog alert = new AlertDialog.Builder(MainActivity.this).create();
+        try {
+            if (!(getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH))) {
+                AlertDialog alert = new AlertDialog.Builder(MainActivity.this).create();
 
-            alert.setTitle("Camera Error");
-            alert.setMessage("Your device does not have an LED camera flash!");
-            alert.setButton(AlertDialog.BUTTON_POSITIVE, "Exit", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
-            });
-            alert.show();
-            return;
+                alert.setTitle("Camera Error");
+                alert.setMessage("Your device does not have an LED camera flash!");
+                alert.setButton(AlertDialog.BUTTON_POSITIVE, "Exit", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+                alert.show();
+                return;
+            }
+        } catch (NullPointerException e) {
+            Log.e("Could not get system features", e.getMessage());
         }
 
         toggle = (ToggleButton) findViewById(R.id.flashButton);
