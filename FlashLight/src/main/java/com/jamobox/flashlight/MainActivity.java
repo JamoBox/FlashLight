@@ -21,11 +21,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Detect if an LED flash is available on the device
         try {
             if (!(getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH))) {
                 AlertDialog alert = new AlertDialog.Builder(MainActivity.this).create();
 
-                alert.setTitle("Camera Error");
+                alert.setTitle("No Flash Device!");
                 alert.setMessage("Your device does not have an LED camera flash!");
                 alert.setButton(AlertDialog.BUTTON_POSITIVE, "Exit", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -40,7 +41,6 @@ public class MainActivity extends Activity {
         }
 
         toggle = (ToggleButton) findViewById(R.id.flashButton);
-
         flashMode = FlashModes.FLASH_OFF;
         flashUtils = new FlashUtils();
 
@@ -55,6 +55,7 @@ public class MainActivity extends Activity {
         return true;
     }
 
+    // Called on toggle button press
     public void toggleFlash(View view) {
         if (toggle.isChecked()) {
             setFlashState(FlashModes.FLASH_ON);
@@ -63,15 +64,15 @@ public class MainActivity extends Activity {
         }
     }
 
+    // Run all code needed to make a smooth flash toggle
     public void setFlashState(boolean state) {
         if (state == FlashModes.FLASH_ON) {
             flashUtils.flashOn();
             flashMode = FlashModes.FLASH_ON;
-
         } else {
             flashUtils.flashOff();
             flashMode = FlashModes.FLASH_OFF;
-
         }
     }
+
 }
