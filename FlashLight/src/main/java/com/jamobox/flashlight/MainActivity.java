@@ -43,10 +43,9 @@ public class MainActivity extends Activity {
 
         toggle = (ToggleButton) findViewById(R.id.flashButton);
         notification = new FlashNotification(this);
-
-        flashMode = FlashModes.FLASH_OFF;
         flashUtils = new FlashUtils();
 
+        flashMode = FlashModes.FLASH_OFF;
         flashUtils.getCamera();
     }
 
