@@ -12,9 +12,10 @@ import android.widget.ToggleButton;
 
 public class MainActivity extends Activity {
 
-    public static boolean flashMode;
+    public static int flashMode;
     private FlashUtils flashUtils;
     private ToggleButton toggle;
+    private FlashNotification notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,8 @@ public class MainActivity extends Activity {
         }
 
         toggle = (ToggleButton) findViewById(R.id.flashButton);
+        notification = new FlashNotification(this);
+
         flashMode = FlashModes.FLASH_OFF;
         flashUtils = new FlashUtils();
 
@@ -65,13 +68,15 @@ public class MainActivity extends Activity {
     }
 
     // Run all code needed to make a smooth flash toggle
-    public void setFlashState(boolean state) {
+    public void setFlashState(int state) {
         if (state == FlashModes.FLASH_ON) {
             flashUtils.flashOn();
             flashMode = FlashModes.FLASH_ON;
+            notification.showNotification();
         } else {
             flashUtils.flashOff();
             flashMode = FlashModes.FLASH_OFF;
+            notification.closeNotification();
         }
     }
 
