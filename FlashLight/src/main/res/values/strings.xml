@@ -3,5 +3,6 @@
 
     <string name="app_name">FlashLight</string>
     <string name="action_settings">Settings</string>
+    <string name="toggle_text">Toggle Flash</string>
 
 </resources>

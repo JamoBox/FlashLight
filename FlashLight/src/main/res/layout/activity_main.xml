@@ -11,7 +11,7 @@
     <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Toggle Flashlight"
+            android:text="@string/toggle_text"
             android:id="@+id/flashButton"
             android:onClick="toggleFlash"
             android:layout_centerVertical="true"
