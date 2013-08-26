@@ -16,7 +16,7 @@ public class FlashUtils {
                 cam = Camera.open();
                 params = cam.getParameters();
             } catch (Exception e) {
-                Log.e("Camera Error", e.getMessage());
+                e.printStackTrace();
             }
         }
     }

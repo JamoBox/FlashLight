@@ -1,7 +1,5 @@
 package com.jamobox.flashlight;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.app.Activity;
@@ -16,34 +14,26 @@ public class MainActivity extends Activity {
     private FlashUtils flashUtils;
     private ToggleButton toggle;
     private FlashNotification notification;
+    private FlashAlerts alerts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        toggle = (ToggleButton) findViewById(R.id.flashButton);
+        notification = new FlashNotification(this);
+        alerts = new FlashAlerts(this);
+        flashUtils = new FlashUtils();
+
         // Detect if an LED flash is available on the device
         try {
             if (!(getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH))) {
-                AlertDialog alert = new AlertDialog.Builder(MainActivity.this).create();
-
-                alert.setTitle("No Flash Device!");
-                alert.setMessage("Your device does not have an LED camera flash!");
-                alert.setButton(AlertDialog.BUTTON_POSITIVE, "Exit", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                });
-                alert.show();
-                return;
+                alerts.showAlert("No camera flash", "FlashLight could not detect an LED flash on your device. Sorry!");
             }
         } catch (NullPointerException e) {
             Log.e("Could not get system features", e.getMessage());
         }
-
-        toggle = (ToggleButton) findViewById(R.id.flashButton);
-        notification = new FlashNotification(this);
-        flashUtils = new FlashUtils();
 
         flashMode = FlashModes.FLASH_OFF;
         flashUtils.getCamera();
