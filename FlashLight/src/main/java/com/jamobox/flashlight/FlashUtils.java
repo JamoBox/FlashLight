@@ -32,9 +32,13 @@ public class FlashUtils {
 
     // Turn the camera flash off
     public void flashOff() {
-        params.setFlashMode(Parameters.FLASH_MODE_OFF);
-        cam.setParameters(params);
-        cam.stopPreview();
+        try {
+            params.setFlashMode(Parameters.FLASH_MODE_OFF);
+            cam.setParameters(params);
+            cam.stopPreview();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
