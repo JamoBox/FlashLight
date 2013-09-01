@@ -14,10 +14,12 @@ public class MainActivity extends Activity {
     private FlashUtils flashUtils;
     private ToggleButton toggle;
     private FlashNotification notification;
-    private FlashAlerts alerts;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FlashAlerts alerts;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
