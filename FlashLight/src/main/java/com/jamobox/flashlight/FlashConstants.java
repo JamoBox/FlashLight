@@ -1,6 +1,6 @@
 package com.jamobox.flashlight;
 
-public abstract interface FlashModes {
+public abstract interface FlashConstants {
 
     // Public constants for readability improvement
     public static final int FLASH_ON = 1;

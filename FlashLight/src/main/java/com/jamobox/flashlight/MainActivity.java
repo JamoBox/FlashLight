@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
             Log.e("Could not get system features", e.getMessage());
         }
 
-        flashMode = FlashModes.FLASH_OFF;
+        flashMode = FlashConstants.FLASH_OFF;
         flashUtils.getCamera();
     }
 
@@ -52,21 +52,21 @@ public class MainActivity extends Activity {
     // Called on toggle button press
     public void toggleFlash(View view) {
         if (toggle.isChecked()) {
-            setFlashState(FlashModes.FLASH_ON);
+            setFlashState(FlashConstants.FLASH_ON);
         } else {
-            setFlashState(FlashModes.FLASH_OFF);
+            setFlashState(FlashConstants.FLASH_OFF);
         }
     }
 
     // Run all code needed to make a smooth flash toggle
     public void setFlashState(int state) {
-        if (state == FlashModes.FLASH_ON) {
+        if (state == FlashConstants.FLASH_ON) {
             flashUtils.flashOn();
-            flashMode = FlashModes.FLASH_ON;
+            flashMode = FlashConstants.FLASH_ON;
             notification.showNotification();
         } else {
             flashUtils.flashOff();
-            flashMode = FlashModes.FLASH_OFF;
+            flashMode = FlashConstants.FLASH_OFF;
             notification.closeNotification();
         }
     }
