@@ -6,13 +6,13 @@ import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.ToggleButton;
+import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
 
     public static int flashMode;
     private FlashUtils flashUtils;
-    private ToggleButton toggle;
+    private ImageButton toggle;
     private FlashNotification notification;
 
 
@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toggle = (ToggleButton) findViewById(R.id.flashButton);
+        toggle = (ImageButton) findViewById(R.id.flashButton);
         notification = new FlashNotification(this);
         alerts = new FlashAlerts(this);
         flashUtils = new FlashUtils();
@@ -39,6 +39,20 @@ public class MainActivity extends Activity {
 
         flashMode = FlashConstants.FLASH_OFF;
         flashUtils.getCamera();
+
+        toggle.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            // Called on toggle button press
+            public void onClick(View view) {
+                if (flashMode == FlashConstants.FLASH_OFF) {
+                    setFlashState(FlashConstants.FLASH_ON);
+                } else {
+                    setFlashState(FlashConstants.FLASH_OFF);
+                }
+            }
+        });
+
     }
 
 
@@ -49,24 +63,18 @@ public class MainActivity extends Activity {
         return true;
     }
 
-    // Called on toggle button press
-    public void toggleFlash(View view) {
-        if (toggle.isChecked()) {
-            setFlashState(FlashConstants.FLASH_ON);
-        } else {
-            setFlashState(FlashConstants.FLASH_OFF);
-        }
-    }
 
     // Run all code needed to make a smooth flash toggle
     public void setFlashState(int state) {
         if (state == FlashConstants.FLASH_ON) {
             flashUtils.flashOn();
             flashMode = FlashConstants.FLASH_ON;
+            toggle.setImageResource(R.drawable.ic_toggle_button_on);
             notification.showNotification();
         } else {
             flashUtils.flashOff();
             flashMode = FlashConstants.FLASH_OFF;
+            toggle.setImageResource(R.drawable.ic_toggle_button_off);
             notification.closeNotification();
         }
     }
