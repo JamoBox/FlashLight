@@ -69,12 +69,12 @@ public class MainActivity extends Activity {
         if (state == FlashConstants.FLASH_ON) {
             flashUtils.flashOn();
             flashMode = FlashConstants.FLASH_ON;
-            toggle.setImageResource(R.drawable.ic_toggle_button_on);
+            toggle.setImageResource(R.drawable.ic_toggle_button_off);
             notification.showNotification();
         } else {
             flashUtils.flashOff();
             flashMode = FlashConstants.FLASH_OFF;
-            toggle.setImageResource(R.drawable.ic_toggle_button_off);
+            toggle.setImageResource(R.drawable.ic_toggle_button_on);
             notification.closeNotification();
         }
     }
