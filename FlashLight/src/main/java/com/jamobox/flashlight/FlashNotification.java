@@ -6,8 +6,8 @@ import android.support.v4.app.NotificationCompat;
 
 public class FlashNotification {
 
-    NotificationCompat.Builder builder;
-    NotificationManager manager;
+    private NotificationCompat.Builder builder;
+    private NotificationManager manager;
 
     public FlashNotification(Context context) {
         builder = new NotificationCompat.Builder(context);
