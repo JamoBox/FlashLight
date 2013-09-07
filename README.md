@@ -1,7 +1,8 @@
 FlashLight
 ==========
 Android flashlight app
-This app is actively under development, so some bugs may occur. Any known bugs can be found in the issue tracker. If you happen to find any bugs, please report them there.
+This is a very simple flashlight application for Android devices with LED camera flashes. The app is very lightweight and tries to focus on minimal storage space and memory usage over pages and pages of options and configurations.
+Touch the button once, and your light is on. Once again, and the light is off. Simple.
 
 
 ### Requirements

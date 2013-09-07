@@ -20,11 +20,11 @@ public class FlashNotification {
         builder.setContentText("FlashLight is currently on");
         builder.setOngoing(true);
 
-        manager.notify(FlashModes.FLASH_ON, builder.build());
+        manager.notify(FlashConstants.FLASH_ON, builder.build());
     }
 
     public void closeNotification() {
-        manager.cancel(FlashModes.FLASH_ON);
+        manager.cancel(FlashConstants.FLASH_ON);
     }
 
 }
