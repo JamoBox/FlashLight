@@ -1,5 +1,6 @@
 package com.jamobox.flashlight;
 
+import android.app.Activity;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.util.Log;
@@ -10,7 +11,7 @@ public class FlashUtils {
     private Parameters params;
 
     // Get the device camera and load the parameters
-    public void getCamera() {
+    public void prepareCamera() {
         if (cam == null) {
             try {
                 cam = Camera.open();
@@ -19,6 +20,18 @@ public class FlashUtils {
                 e.printStackTrace();
             }
         }
+    }
+
+    public Camera getCamera() {
+        return cam;
+    }
+
+    /* TODO: Make this cleaner and not dependant on MainActivity */
+    public void releaseCamera() {
+        if (MainActivity.flashMode == FlashConstants.FLASH_ON) {
+            flashOff();
+        }
+        cam.release();
     }
 
     // Turn the camera flash on

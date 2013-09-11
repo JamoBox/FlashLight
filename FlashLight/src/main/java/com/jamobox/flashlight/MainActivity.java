@@ -14,11 +14,11 @@ public class MainActivity extends Activity {
     private FlashUtils flashUtils;
     private ImageButton toggle;
     private FlashNotification notification;
+    private FlashAlerts alerts;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FlashAlerts alerts;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -28,17 +28,10 @@ public class MainActivity extends Activity {
         alerts = new FlashAlerts(this);
         flashUtils = new FlashUtils();
 
-        // Detect if an LED flash is available on the device
-        try {
-            if (!(getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH))) {
-                alerts.showAlert("No camera flash", "FlashLight could not detect an LED flash on your device. Sorry!");
-            }
-        } catch (NullPointerException e) {
-            Log.e("Could not get system features", e.getMessage());
-        }
+        detectFlash();
 
         flashMode = FlashConstants.FLASH_OFF;
-        flashUtils.getCamera();
+        flashUtils.prepareCamera();
 
         toggle.setOnClickListener(new View.OnClickListener() {
 
@@ -55,6 +48,19 @@ public class MainActivity extends Activity {
 
     }
 
+    public boolean detectFlash() {
+        try {
+            if (!(getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH))) {
+                alerts.showAlert("No camera flash", "FlashLight could not detect an LED flash on your device. Sorry!");
+                return false;
+            } else {
+                return true;
+            }
+        } catch (NullPointerException e) {
+            Log.e("Could not get system features", e.getMessage());
+            return false;
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
