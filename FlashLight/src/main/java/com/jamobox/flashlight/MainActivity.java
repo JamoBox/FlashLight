@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
 
     }
 
-    // Continue if user has a flash device, close if not.
+    /* Continue if user has a flash device, close if not. */
     public void detectFlash() {
         try {
             if (!(getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH))) {
@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
     }
 
 
-    // Run all code needed to make a smooth flash toggle
+    /* Run all code needed to make a smooth flash toggle. */
     public void setFlashState(int state) {
         if (state == FlashConstants.FLASH_ON) {
             flashUtils.flashOn();

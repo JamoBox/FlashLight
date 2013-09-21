@@ -14,6 +14,9 @@ public class FlashAlerts {
         alert = new AlertDialog.Builder(activity).create();
     }
 
+    /* Show an alert message and exit the application
+     * TODO: Make this cleaner and find a more elegant solution to exiting the application
+     */
     public void showAlert(String title, String msg) {
         alert.setTitle(title);
         alert.setMessage(msg);

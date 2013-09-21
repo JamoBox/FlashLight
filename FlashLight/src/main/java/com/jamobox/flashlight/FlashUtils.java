@@ -10,7 +10,7 @@ public class FlashUtils {
     private Camera cam;
     private Parameters params;
 
-    // Get the device camera and load the parameters
+    /* Get the device camera and load the parameters. */
     public void prepareCamera() {
         if (cam == null) {
             try {
@@ -34,7 +34,7 @@ public class FlashUtils {
         cam.release();
     }
 
-    // Turn the camera flash on
+    /* Turn the camera flash on */
     public void flashOn() {
         if(!(cam == null || params == null)) {
             params.setFlashMode(Parameters.FLASH_MODE_TORCH);
@@ -43,7 +43,7 @@ public class FlashUtils {
         }
     }
 
-    // Turn the camera flash off
+    /* Turn the camera flash off */
     public void flashOff() {
         try {
             params.setFlashMode(Parameters.FLASH_MODE_OFF);
