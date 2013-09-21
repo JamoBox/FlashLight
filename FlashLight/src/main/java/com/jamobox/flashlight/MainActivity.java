@@ -48,17 +48,14 @@ public class MainActivity extends Activity {
 
     }
 
-    public boolean detectFlash() {
+    // Continue if user has a flash device, close if not.
+    public void detectFlash() {
         try {
             if (!(getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH))) {
                 alerts.showAlert("No camera flash", "FlashLight could not detect an LED flash on your device. Sorry!");
-                return false;
-            } else {
-                return true;
             }
         } catch (NullPointerException e) {
             Log.e("Could not get system features", e.getMessage());
-            return false;
         }
     }
 
