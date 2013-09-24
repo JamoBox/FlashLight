@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
         toggle.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            // Called on toggle button press
+            /* Called on toggle button press */
             public void onClick(View view) {
                 if (flashMode == FlashConstants.FLASH_OFF) {
                     setFlashState(FlashConstants.FLASH_ON);
